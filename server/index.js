@@ -24,6 +24,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
@@ -53,7 +54,7 @@ app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 /* MONGOOSE SETUP */
-const MONGO_URL = "mongodb+srv://dummy:dummy123@cluster0.ycthzlw.mongodb.net/cluster0?retryWrites=true&w=majority"
+const MONGO_URL = "mongodb+srv://dummy:dummy123@cluster0.ycthzlw.mongodb.net/cluster0?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 6001;
 mongoose
   .connect(MONGO_URL, {
